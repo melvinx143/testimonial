@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #backgroundimaging
+    {
+        z-index:-1;
+        position: fixed;
+    }
+    .content_body
+    {
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+    
+    }
+    #profpic
+    {
+        border-radius: 50%;
+        width:150px;
+        height:150px;
+     box-shadow: 12px 12px 12px grey;
+        transition: opacity 0.7s ease-in 0.1s;
+        cursor:pointer;
+    }
+    #profpic:hover{
+        opacity: 0.6;
+    }
+   
+    *{
+        
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    }
+    #ourreview
+    {
+        margin-top:3rem;
+        font-size: 33px;
+        color:white;
+    }
+    #names
+    {
+        padding:80px;
+        font-style: italic;
+        font-size: 22px;
+    }
+    #underline
+    {
+        padding:10px;
+        background-color:burlywood;
+        width:100px;
+        margin-bottom:1.5rem;
+    }
+    #description
+    {
+       box-shadow: 12px 12px 12px black;
+    font-size:18px;
+       color:blue;
+       padding:70px;
+    
+    }
+    #prev,#next
+    {
+        padding:10px;
+        font-weight: bold;
+        border-radius: 50%;
+        border:none;
+        width:50px;
+        cursor:pointer;
+        background-color: aquamarine;
+        transition: background-color 0.5s ease-in-out 0.1s;
+    }
+    #title
+    {
+        font-size: 18px;
+        font-family:Georgia, 'Times New Roman', Times, serif;
+    }
+    #prev:hover,#next:hover
+    {
+        background-color: black;
+        color:grey;
+    }
+    #prev:active,#next:active{
+      color:black;
+      background-color: white;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,200&display=swap');
+
+</style>
+<body>
+    <div class="content_body">
+        <img src="./black.jpg" id="backgroundimaging">
+        <h1 id="ourreview">Our Reviews</h1> <!--reviews-->
+<h3 id="underline"></h3>
+        <fieldset id="description">
+            <legend>
+                <img src="./images/ali.jpg" height="50px" id="profpic"> <!--profilepics-->
+            </legend>
+            <button id="prev">&#11164;</button>
+            <span id="names">Mitchell</span> <!--Name of the person-->
+            <button id="next">&#11166;</button>
+            <h5 id="title">Great web developer Much impressive website and really   <!--Description-->
+                delivers project on time</h5>
+ 
+        </fieldset>
+    </div>
+   
+    <script>
+        let title=document.getElementById('title');
+let profilepic=document.getElementById('profpic');
+let names=document.getElementById('names');
+let previous=document.getElementById("prev");
+let next=document.getElementById("next");
+let counts=0;
+let display=[
+
+    {
+profilepic:'./images/austin.jpg',
+names:'Austin',
+title:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto et perferendis eveniet deleniti aut do."
+    },
+    {
+        profilepic:'./images/benjamin.jpg',
+names:'Sharon',
+title:"onsectetur adipisicing elit. Iusto et perferendis eveniet deleniti aut do."
+    },
+    {
+        profilepic:'./images/daniel.jpg',
+names:'Daniel',
+title:"Quia saepe earum a odit nostrum error repellendus, cu illum consequuntur suscipi."
+    },
+    {
+        profilepic:'./images/jennifer.jpg',
+names:'Jennifer',
+title:"dolor sit amet consectetur adipisicing elit. Quia sapiente doloribus,"
+    }
+];
+
+window.addEventListener('DOMContentLoaded',function(){
+    person();
+});
+
+
+function person()
+{
+    let p=display[counts];
+    profilepic.src=p.profilepic;
+    names.textContent=p.names;
+    title.textContent=p.title;
+
+}
+previous.addEventListener('click',function(){
+counts++;
+if(counts>display.length-1)
+{
+counts=0;
+} 
+ person();
+});
+next.addEventListener('click',function(){
+    counts--;
+if(counts<0)
+{
+counts=display.length-1;
+} 
+ person();
+});
+    </script>
+</body>
+</html>
